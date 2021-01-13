@@ -114,14 +114,28 @@
                 color: #00203FFF;
                 font-family: 'Open Sans';
             }
-            .course-content > div:nth-child(2) p {
+            .course-content > div:nth-child(2) p,
+            .course-content > div:nth-child(3) p {
                 margin: 0;
                 font-family: 'Poppins';
                 font-weight: 400;
+                font-size: 1.1em;
             }
-            .course-content > div:nth-child(2) span {
+            .course-content > div:nth-child(2) span,
+            .course-content > div:nth-child(3) span {
                 font-weight: bold;
                 font-weight: 500;
+                font-size: 1.1em;
+            }
+            .course-content > div:nth-child(2) > div:nth-child(1) p > img {
+                width: 23px;
+                height: 23px;
+                margin-left: 8px;
+            }
+            .course-content > div:nth-child(2) > div:nth-child(2) p > img {
+                width: 23px;
+                height: 23px;
+                margin-left: 10px;
             }
         </style>
     </head>
@@ -153,27 +167,39 @@
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-4">
                                     <p class="text-right">
-                                        Complete in 4 hours
+                                        Complete in 5 hours
                                         <i class="bi bi-clock-fill"></i>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div class="course-content">
-                            <div class="row">
+                            <div class="row" style="margin-bottom: 13px">
                                 <div class="col-md-12">
                                    <p>MACHINE LEARNING: AN INTRODUCTION</p>
                                 </div>
                             </div>
-                            <div class="row">
-                                div. 
+                            <div class="row" style="margin-bottom: 16px">
+                                <div class="col-md-6">
+                                    <p>Course instructor</p>
+                                    <p style="margin-top: 8px">
+                                        <span>Prof. Dr. Shaliza K</span>
+                                        <img src="https://www.flaticon.com/svg/vstatic/svg/949/949635.svg?token=exp=1610567625~hmac=06fbc4fd52fe6aea7f1a4f29c3f7af5c">
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="text-right">Languages</p>
+                                    <p class="text-right" style="margin-top: 8px">
+                                        <img src="https://www.flaticon.com/svg/vstatic/svg/197/197374.svg?token=exp=1610566581~hmac=d01d5bdd2357385cb37b4b1d6441610f">
+                                        <img src="https://www.flaticon.com/svg/vstatic/svg/197/197581.svg?token=exp=1610566886~hmac=c2753d86476d3a1d6b4709c5621aab00">
+                                    </p>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <p><span>Prerequisite for:</span> Machine learning for business subject</p>
+                                    <p><span>Prerequisite for</span> Machine learning for business subject</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <p class="text-right">Students' favourite</p>
                                     <p class="text-right">
                                         <i class="bi bi-star-fill"></i>
                                         <i class="bi bi-star-fill"></i>
@@ -182,6 +208,7 @@
                                         <i class="bi bi-star-half"></i>
                                         <i class="bi bi-star"></i>
                                     </p>
+                                    <p class="text-right" style="margin-top: 8px">Students' favourite</p>
                                 </div>
                             </div>
                         </div>
