@@ -1,3 +1,3 @@
 # Course recommendation prototype
 
-The prototype mainly built for my machine learning project. 
+The prototype mainly built for my machine learning project, built with Django.
