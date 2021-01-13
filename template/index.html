@@ -32,28 +32,28 @@
             .heading-root > div > div:nth-child(1) {
                 top: 7px;
             }
-            button {
+            .back {
                 font-size: 20px !Important;
                 padding: 10px 15px 10px 15px;
                 text-decoration: none !Important;
                 color: #333333 !Important;
             }
-            button > i {
+            .back > i {
                 font-size: 20px !Important;
                 margin-right: 10px;
                 position: relative;
                 right: 0px;
                 transition: all 0.15s ease-in-out;
             }
-            button:hover {
+            .back:hover {
                 cursor: pointer;
             }
-            button:hover i {
+            .back:hover i {
                 position: relative;
                 right: 8px;
                 transition: all 0.15s ease-in-out;
             }
-            button:focus {
+            .back:focus {
                 border: none !Important;
                 outline: none !Important;
             }
@@ -63,24 +63,12 @@
             .course-wrapper { padding: 50px 0px 20px 0px; }
             .course {
                 position: relative !Important;
-                bottom: 0px;
-                transition: all 0.15s ease-in-out;
                 background-color: #FFF;
                 height: 420px;
                 box-shadow: 0 6px 15px rgba(36, 37, 38, 0.08);
                 border-radius: 20px;
                 background-color: white;
                 border-color: transparent;
-            }
-            .course:hover {
-                bottom: 6px;
-                transition: all 0.15s ease-in-out;
-                box-shadow: 0 0px 15px rgba(36, 37, 38, 0.08);
-                cursor: pointer;
-            }
-            .course:active {
-                bottom: 0px;
-                box-shadow: none;
             }
             .course-head i,
             .course-head p {
@@ -107,6 +95,8 @@
                 background-image: linear-gradient(to right, #accbee 0%, #e7f0fd 100%);
                 box-shadow: 0 6px 15px rgba(36, 37, 38, 0.08);
                 padding: 20px 20px 20px 20px;
+                border-bottom-right-radius: 20px;
+                border-bottom-left-radius: 20px;
             }
             .course-content > div:nth-child(1) > div:nth-child(1) > p {
                 font-size: 1.8em;
@@ -137,6 +127,24 @@
                 height: 23px;
                 margin-left: 10px;
             }
+            .enroll {
+                background: none;
+                position: absolute;
+                bottom: -31px;
+                right: 15px;
+                z-index: 999;
+                border: 1px solid black;
+                font-size: 1.5em !Important;
+                padding: 10px 15px 10px 15px;
+                backdrop-filter: blur(10px);
+            }
+            .enroll > i {
+                font-size: 20px !Important;
+                margin-left: 10px;
+            }
+            .back:hover {
+                cursor: pointer;
+            }
         </style>
     </head>
     <style>
@@ -145,7 +153,7 @@
         <div class="container heading-root">
             <div class="row">
                 <div class="col-md-3">
-                    <button type="button" class="btn btn-link">
+                    <button type="button" class="btn btn-link back">
                         <i class="bi bi-arrow-left"></i>
                         Back to home
                     </button>
@@ -157,17 +165,17 @@
         </div>
         <div class="container">
             <div class="row course-wrapper">
-            {% for i in range %}
+            {% for course in courses %}
                 <div class="col-md-4">
                     <div class="course"
-                    style="background: url('https://images.unsplash.com/photo-1501526029524-a8ea952b15be?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80');
+                    style="background: url({{course.image}});
                            background-size: cover;
-                           overflow: hidden">
+                           background-position: center;">
                         <div class="course-head">
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-4">
                                     <p class="text-right">
-                                        Complete in 5 hours
+                                        Complete in {{course.hours}} hours
                                         <i class="bi bi-clock-fill"></i>
                                     </p>
                                 </div>
@@ -176,14 +184,14 @@
                         <div class="course-content">
                             <div class="row" style="margin-bottom: 13px">
                                 <div class="col-md-12">
-                                   <p>MACHINE LEARNING: AN INTRODUCTION</p>
+                                   <p>{{course.title}}</p>
                                 </div>
                             </div>
-                            <div class="row" style="margin-bottom: 16px">
+                            <div class="row" style="margin-bottom: 18px">
                                 <div class="col-md-6">
                                     <p>Course instructor</p>
                                     <p style="margin-top: 8px">
-                                        <span>Prof. Dr. Shaliza K</span>
+                                        <span>{{course.lecturer}}</span>
                                         <img src="https://www.flaticon.com/svg/vstatic/svg/949/949635.svg?token=exp=1610567625~hmac=06fbc4fd52fe6aea7f1a4f29c3f7af5c">
                                     </p>
                                 </div>
@@ -212,6 +220,10 @@
                                 </div>
                             </div>
                         </div>
+                        <button type="button" class="enroll">
+                            Enroll now
+                            <i class="bi bi-arrow-up-right-square"></i>
+                        </button>
                     </div>
                 </div>
             {% endfor %}
