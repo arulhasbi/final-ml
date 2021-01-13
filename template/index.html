@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>A recommendation system: online learning platform</title>
+        <!-- Google font -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap Icon -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+        <!-- Very messy custom CSS :( -->
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-size: 10px;
+            }
+            body {
+                background: #EEF2F7;
+            }
+            .border {
+                border: 2px dashed blue;
+            }
+            .heading-root > div {
+                padding-top: 30px;
+            }
+            .heading-root > div > div:nth-child(1) {
+                top: 7px;
+            }
+            button {
+                font-size: 20px !Important;
+                padding: 10px 15px 10px 15px;
+                text-decoration: none !Important;
+                color: #333333 !Important;
+            }
+            button > i {
+                font-size: 20px !Important;
+                margin-right: 10px;
+                position: relative;
+                right: 0px;
+                transition: all 0.15s ease-in-out;
+            }
+            button:hover {
+                cursor: pointer;
+            }
+            button:hover i {
+                position: relative;
+                right: 8px;
+                transition: all 0.15s ease-in-out;
+            }
+            button:focus {
+                border: none !Important;
+                outline: none !Important;
+            }
+            h1 {
+                margin-top: 10px;
+            }
+            .course-wrapper { padding: 50px 0px 20px 0px; }
+            .course {
+                position: relative !Important;
+                bottom: 0px;
+                transition: all 0.15s ease-in-out;
+                background-color: #FFF;
+                height: 420px;
+                box-shadow: 0 6px 15px rgba(36, 37, 38, 0.08);
+                border-radius: 20px;
+                background-color: white;
+                border-color: transparent;
+            }
+            .course:hover {
+                bottom: 10px;
+                transition: all 0.15s ease-in-out;
+                box-shadow: 0 0px 15px rgba(36, 37, 38, 0.08);
+                cursor: pointer;
+            }
+            .course:active {
+                bottom: 0px;
+                box-shadow: none;
+            }
+            .course-head i,
+            .course-head p {
+                display: inline;
+                font-size: 15px;
+            }
+            .course-head i {
+                margin-left: 10px;
+            }
+            .course-head p {
+                padding: 10px 20px 10px 15px;
+                display: block;
+                background-image: linear-gradient(to right, #accbee 0%, #e7f0fd 100%);
+                border: none;
+                border-bottom-left-radius: 20px;
+                border-top-right-radius: 20px;
+                font-weight: 700;
+                box-shadow: 0 6px 15px rgba(36, 37, 38, 0.08);
+            }
+            .course-content {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                background-color: #ffffff;
+                background-image: linear-gradient(to right, #accbee 0%, #e7f0fd 100%);
+                box-shadow: 0 6px 15px rgba(36, 37, 38, 0.08);
+                padding: 20px 15px 15px 20px;
+            }
+            .course-content p {
+                font-size: 2.2em;
+                font-weight: 800;
+                color: #00203FFF;
+                font-family: 'Open Sans';
+            }
+        </style>
+    </head>
+    <style>
+    </style>
+    <body>
+        <div class="container heading-root">
+            <div class="row">
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-link">
+                        <i class="bi bi-arrow-left"></i>
+                        Back to home
+                    </button>
+                </div>
+                <div class="col-md-9">
+                    <h1 class="text-right display-2">Course recommendation</h1>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row course-wrapper">
+            {% for i in range %}
+                <div class="col-md-4">
+                    <div class="course"
+                    style="background: url('https://images.unsplash.com/photo-1501526029524-a8ea952b15be?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80');
+                           background-size: cover;
+                           overflow: hidden">
+                        <div class="course-head">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-4">
+                                    <p class="text-right">
+                                        Complete in 4 hours
+                                        <i class="bi bi-clock-fill"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="course-content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                   <p>MACHINE LEARNING: AN INTRODUCTION</p>
+                                </div>
+                                <div class="col-md-12 border">
+                                    do
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </body>
+    <!-- AmchartJS -->
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</html>
