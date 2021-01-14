@@ -1,10 +1,14 @@
 from django.shortcuts import render
+import pandas as pd
 import os
 
 # make a home page
 def home(request):
+    students = generateStudent()
     return render(request, 'index.html', {
-        'ranges': range(2)
+        'ranges': range(4),
+        'columns': students["columns"],
+        'records': students["records"]
     })
 
 # make a recommendation page
@@ -29,3 +33,22 @@ def generateCourse():
         "hours": 4
     }]
     return courses
+
+# generate students data
+def generateStudent():
+    dirname = os.path.dirname(__file__)
+    datasetpath = os.path.join(os.path.dirname(__file__), "dataset/train-tortuga.csv")
+
+    df = pd.read_csv(datasetpath)
+    columns = df[['USER_ID', 'NAME', 'AVG_SCORE_DATASCIENCE', 'AVG_SCORE_BACKEND',	'AVG_SCORE_FRONTEND', 'PROFILE']].columns
+
+    chunk = df[columns].head(5).to_dict('records')
+
+    print(chunk)
+
+    payload = {
+        "columns": columns,
+        "records": chunk
+    }
+
+    return payload

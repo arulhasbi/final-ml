@@ -26,12 +26,6 @@
             .border {
                 border: 2px dashed blue;
             }
-            .heading-root > div {
-                padding-top: 30px;
-            }
-            .heading-root > div > div:nth-child(1) {
-                top: 7px;
-            }
             .back {
                 font-size: 20px !Important;
                 padding: 10px 15px 10px 15px;
@@ -57,7 +51,7 @@
                 border: none !Important;
                 outline: none !Important;
             }
-            h1 {
+            h2 {
                 margin-top: 10px;
             }
             .course-wrapper { padding: 50px 0px 20px 0px; }
@@ -153,83 +147,92 @@
     <style>
     </style>
     <body>
-        <div class="container heading-root">
-            <div class="row">
-                <div class="col-md-3">
-                    <button type="button" class="btn btn-link back">
-                        <i class="bi bi-arrow-left"></i>
-                        Back to home
-                    </button>
-                </div>
-                <div class="col-md-9">
-                    <h1 class="text-right display-2">Course recommendation</h1>
-                </div>
+        <div class="root-wrapper">
+            <div class="container"
+                 style="margin-top: 40px;
+                        padding-right: 22.5px">
+                <h2 class="text-right display-2"
+                    style="position: relative !Important">
+                    Course recommendation platform
+                    <span style="position: absolute;
+                                 left: 0;
+                                 top: 15px;
+                                 font-size: 16px;">
+                        <a href="#"
+                           style="font-size: 16px;
+                                  color: #333333 !Important;">back </a>
+                                  /
+                        <a href="#"
+                            style="font-size: 16px;
+                                    color: #333333 !Important;">recommendation</a>
+                    </span>
+                </h2>
             </div>
-        </div>
-        <div class="container">
-            <div class="row course-wrapper">
-            {% for course in courses %}
-                <div class="col-md-4">
-                    <div class="course"
-                    style="background: url({{course.image}});
-                           background-size: cover;
-                           background-position: center;">
-                        <div class="course-head">
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-4">
-                                    <p class="text-right">
-                                        Complete in {{course.hours}} hours
-                                        <i class="bi bi-clock-fill"></i>
-                                    </p>
+            <div class="container">
+                <div class="row course-wrapper">
+                {% for course in courses %}
+                    <div class="col-md-4">
+                        <div class="course"
+                        style="background: url({{course.image}});
+                               background-size: cover;
+                               background-position: center;">
+                            <div class="course-head">
+                                <div class="row">
+                                    <div class="col-md-8 col-md-offset-4">
+                                        <p class="text-right">
+                                            Complete in {{course.hours}} hours
+                                            <i class="bi bi-clock-fill"></i>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="course-content">
+                                <div class="row" style="margin-bottom: 13px">
+                                    <div class="col-md-12">
+                                       <p>{{course.title}}</p>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 18px">
+                                    <div class="col-md-6">
+                                        <p>Course instructor</p>
+                                        <p style="margin-top: 8px">
+                                            <span>{{course.lecturer}}</span>
+                                            <img src="https://www.flaticon.com/svg/vstatic/svg/949/949635.svg?token=exp=1610567625~hmac=06fbc4fd52fe6aea7f1a4f29c3f7af5c">
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="text-right">Languages</p>
+                                        <p class="text-right" style="margin-top: 8px">
+                                            <img src="https://www.flaticon.com/svg/vstatic/svg/197/197374.svg?token=exp=1610566581~hmac=d01d5bdd2357385cb37b4b1d6441610f">
+                                            <img src="https://www.flaticon.com/svg/vstatic/svg/197/197581.svg?token=exp=1610566886~hmac=c2753d86476d3a1d6b4709c5621aab00">
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><span>Prerequisite for</span> Machine learning for business subject</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="text-right">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-half"></i>
+                                            <i class="bi bi-star"></i>
+                                        </p>
+                                        <p class="text-right" style="margin-top: 8px">Students' favourite</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="enroll">
+                                Enroll now
+                                <i class="bi bi-arrow-up-right-square"></i>
+                            </button>
                         </div>
-                        <div class="course-content">
-                            <div class="row" style="margin-bottom: 13px">
-                                <div class="col-md-12">
-                                   <p>{{course.title}}</p>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-bottom: 18px">
-                                <div class="col-md-6">
-                                    <p>Course instructor</p>
-                                    <p style="margin-top: 8px">
-                                        <span>{{course.lecturer}}</span>
-                                        <img src="https://www.flaticon.com/svg/vstatic/svg/949/949635.svg?token=exp=1610567625~hmac=06fbc4fd52fe6aea7f1a4f29c3f7af5c">
-                                    </p>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-right">Languages</p>
-                                    <p class="text-right" style="margin-top: 8px">
-                                        <img src="https://www.flaticon.com/svg/vstatic/svg/197/197374.svg?token=exp=1610566581~hmac=d01d5bdd2357385cb37b4b1d6441610f">
-                                        <img src="https://www.flaticon.com/svg/vstatic/svg/197/197581.svg?token=exp=1610566886~hmac=c2753d86476d3a1d6b4709c5621aab00">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p><span>Prerequisite for</span> Machine learning for business subject</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-right">
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-half"></i>
-                                        <i class="bi bi-star"></i>
-                                    </p>
-                                    <p class="text-right" style="margin-top: 8px">Students' favourite</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="button" class="enroll">
-                            Enroll now
-                            <i class="bi bi-arrow-up-right-square"></i>
-                        </button>
                     </div>
+                {% endfor %}
                 </div>
-            {% endfor %}
             </div>
         </div>
     </body>
