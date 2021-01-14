@@ -40,11 +40,10 @@ def generateStudent():
     datasetpath = os.path.join(os.path.dirname(__file__), "dataset/train-tortuga.csv")
 
     df = pd.read_csv(datasetpath)
-    columns = df[['USER_ID', 'NAME', 'AVG_SCORE_DATASCIENCE', 'AVG_SCORE_BACKEND',	'AVG_SCORE_FRONTEND', 'PROFILE']].columns
+    df["PROFILE_CODE"] = df['PROFILE'].apply(profileCoding)
 
-    chunk = df[columns].head(5).to_dict('records')
-
-    print(chunk)
+    columns = df[['USER_ID', 'NAME', 'AVG_SCORE_DATASCIENCE', 'AVG_SCORE_BACKEND',	'AVG_SCORE_FRONTEND']].columns
+    chunk = df[['USER_ID', 'NAME', 'AVG_SCORE_DATASCIENCE', 'AVG_SCORE_BACKEND',	'AVG_SCORE_FRONTEND', 'PROFILE', 'PROFILE_CODE']].head(10).to_dict('records')
 
     payload = {
         "columns": columns,
@@ -52,3 +51,13 @@ def generateStudent():
     }
 
     return payload
+
+# encoding students' profile code
+def profileCoding(profile):
+    split_by__ = profile.split("_")
+    level =  split_by__[0]
+    if level == "advanced":
+        return 1
+    else:
+        return 0
+
