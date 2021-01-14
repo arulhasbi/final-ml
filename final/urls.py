@@ -20,4 +20,5 @@ from final import views
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('recommendation', views.recommendation, name='recommendation')
 ]

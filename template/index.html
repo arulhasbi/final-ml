@@ -26,205 +26,29 @@
             .border {
                 border: 2px dashed blue;
             }
-            .heading-root > div {
-                padding-top: 30px;
-            }
-            .heading-root > div > div:nth-child(1) {
-                top: 7px;
-            }
-            .back {
-                font-size: 20px !Important;
-                padding: 10px 15px 10px 15px;
-                text-decoration: none !Important;
-                color: #333333 !Important;
-            }
-            .back > i {
-                font-size: 20px !Important;
-                margin-right: 10px;
-                position: relative;
-                right: 0px;
-                transition: all 0.15s ease-in-out;
-            }
-            .back:hover {
-                cursor: pointer;
-            }
-            .back:hover i {
-                position: relative;
-                right: 8px;
-                transition: all 0.15s ease-in-out;
-            }
-            .back:focus {
-                border: none !Important;
-                outline: none !Important;
-            }
-            h1 {
-                margin-top: 10px;
-            }
-            .course-wrapper { padding: 50px 0px 20px 0px; }
-            .course {
+            .figure {
                 position: relative !Important;
                 background-color: #FFF;
-                height: 420px;
+                height: 300px;
                 box-shadow: 0 6px 15px rgba(36, 37, 38, 0.08);
                 border-radius: 20px;
                 background-color: white;
                 border-color: transparent;
-            }
-            .course-head i,
-            .course-head p {
-                display: inline;
-                font-size: 15px;
-            }
-            .course-head i {
-                margin-left: 10px;
-            }
-            .course-head p {
-                padding: 10px 20px 10px 15px;
-                display: block;
-                background-image: linear-gradient(to right, #accbee 0%, #e7f0fd 100%);
-                border-bottom-left-radius: 20px;
-                border-top-right-radius: 20px;
-                font-weight: 700;
-                box-shadow: 0 6px 15px rgba(36, 37, 38, 0.08);
-            }
-            .course-content {
-                position: absolute;
-                bottom: 0;
-                width: 100%;
-                background-color: #ffffff;
-                background-image: linear-gradient(to right, #accbee 0%, #e7f0fd 100%);
-                box-shadow: 0 6px 15px rgba(36, 37, 38, 0.08);
-                padding: 20px 20px 20px 20px;
-                border-bottom-right-radius: 20px;
-                border-bottom-left-radius: 20px;
-            }
-            .course-content > div:nth-child(1) > div:nth-child(1) > p {
-                font-size: 1.8em;
-                font-weight: 800;
-                color: #00203FFF;
-                font-family: 'Open Sans';
-            }
-            .course-content > div:nth-child(2) p,
-            .course-content > div:nth-child(3) p {
-                margin: 0;
-                font-family: 'Poppins';
-                font-weight: 400;
-                font-size: 1.1em;
-            }
-            .course-content > div:nth-child(2) span,
-            .course-content > div:nth-child(3) span {
-                font-weight: bold;
-                font-weight: 500;
-                font-size: 1.1em;
-            }
-            .course-content > div:nth-child(2) > div:nth-child(1) p > img {
-                width: 23px;
-                height: 23px;
-                margin-left: 8px;
-            }
-            .course-content > div:nth-child(2) > div:nth-child(2) p > img {
-                width: 23px;
-                height: 23px;
-                margin-left: 10px;
-            }
-            .enroll {
-                background: none;
-                position: absolute;
-                bottom: -31px;
-                right: 15px;
-                z-index: 999;
-                border: 1px solid black;
-                font-size: 1.5em !Important;
-                padding: 10px 15px 10px 15px;
-                backdrop-filter: blur(10px);
-            }
-            .enroll > i {
-                font-size: 20px !Important;
-                margin-left: 10px;
-            }
-            .back:hover {
-                cursor: pointer;
             }
         </style>
     </head>
     <style>
     </style>
     <body>
-        <div class="container heading-root">
-            <div class="row">
-                <div class="col-md-3">
-                    <button type="button" class="btn btn-link back">
-                        <i class="bi bi-arrow-left"></i>
-                        Back to home
-                    </button>
-                </div>
-                <div class="col-md-9">
-                    <h1 class="text-right display-2">Course recommendation</h1>
-                </div>
-            </div>
+        <div class="container"
+             style="margin-bottom: 10px;">
+            <h1 class="text-left display-2">Data summary</h1>
         </div>
         <div class="container">
-            <div class="row course-wrapper">
-            {% for course in courses %}
-                <div class="col-md-4">
-                    <div class="course"
-                    style="background: url({{course.image}});
-                           background-size: cover;
-                           background-position: center;">
-                        <div class="course-head">
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-4">
-                                    <p class="text-right">
-                                        Complete in {{course.hours}} hours
-                                        <i class="bi bi-clock-fill"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="course-content">
-                            <div class="row" style="margin-bottom: 13px">
-                                <div class="col-md-12">
-                                   <p>{{course.title}}</p>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-bottom: 18px">
-                                <div class="col-md-6">
-                                    <p>Course instructor</p>
-                                    <p style="margin-top: 8px">
-                                        <span>{{course.lecturer}}</span>
-                                        <img src="https://www.flaticon.com/svg/vstatic/svg/949/949635.svg?token=exp=1610567625~hmac=06fbc4fd52fe6aea7f1a4f29c3f7af5c">
-                                    </p>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-right">Languages</p>
-                                    <p class="text-right" style="margin-top: 8px">
-                                        <img src="https://www.flaticon.com/svg/vstatic/svg/197/197374.svg?token=exp=1610566581~hmac=d01d5bdd2357385cb37b4b1d6441610f">
-                                        <img src="https://www.flaticon.com/svg/vstatic/svg/197/197581.svg?token=exp=1610566886~hmac=c2753d86476d3a1d6b4709c5621aab00">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p><span>Prerequisite for</span> Machine learning for business subject</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-right">
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-half"></i>
-                                        <i class="bi bi-star"></i>
-                                    </p>
-                                    <p class="text-right" style="margin-top: 8px">Students' favourite</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="button" class="enroll">
-                            Enroll now
-                            <i class="bi bi-arrow-up-right-square"></i>
-                        </button>
-                    </div>
+            <div class="row">
+            {% for course in ranges %}
+                <div class="col-md-6">
+                    <div class="figure"></div>
                 </div>
             {% endfor %}
             </div>
