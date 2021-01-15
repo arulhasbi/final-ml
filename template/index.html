@@ -26,14 +26,32 @@
             .border {
                 border: 2px dashed blue;
             }
-            .figure {
+            .summary {
                 position: relative !Important;
-                background-color: #FFF;
-                height: 300px;
+                background-color: #222222;
+                height: 400px;
                 box-shadow: 0 6px 15px rgba(36, 37, 38, 0.08);
                 border-radius: 20px;
-                background-color: white;
                 border-color: transparent;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+            .title-wrapper {
+                height: 400px;
+                position: relative !Important;
+            }
+            .title-wrapper > h4 {
+                position: absolute;
+                left: 20px;
+                bottom: -50px;
+                background: none;
+                transform-origin: 0 0;
+                transform: rotate(-90deg);
+                width: 400px;
+                padding: 10px;
+                color: #222222;
             }
             h2 > i {
                 font-size: 28px;
@@ -53,6 +71,10 @@
                 height: 230px;
                 overflow: auto;
                 position: relative !Important;
+            }
+            .figure {
+                height: 100%;
+                width: 100%;
             }
         </style>
     </head>
@@ -103,7 +125,7 @@
                 </h2>
             </div>
             <div class="container"
-                 style="margin-bottom: 20px;">
+                 style="margin-bottom: 40px;">
                 <div class="row">
                      <div class="col-md-12">
                         <div class="list-wrapper">
@@ -132,19 +154,46 @@
                 </div>
             </div>
             <div class="container"
-                 style="margin-bottom: 10px;">
+                 style="margin-bottom: 20px;">
                 <h2 class="text-right display-2">
                     Students summary
                     <i class="bi bi-lightning-fill"></i>
                 </h2>
             </div>
-            <div class="container">
+            <div class="container" style="height: 450px;
+                                          overflow: auto;
+                                          margin-bottom: 50px;">
                 <div class="row">
-                {% for course in ranges %}
-                    <div class="col-md-6" style="margin-bottom: 25px;">
-                        <div class="figure"></div>
+                    <div class="col-md-1" style="margin-bottom: 25px;">
+                        <div class="title-wrapper">
+                            <h4 class="text-center">Distribution of Average Data Science Score</h4>
+                        </div>
                     </div>
-                {% endfor %}
+                    <div class="col-md-11" style="margin-bottom: 25px;">
+                        <div class="summary">
+                            <div id="figure-0" class="figure"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1" style="margin-bottom: 25px;">
+                        <div class="title-wrapper">
+                            <h4 class="text-center">Distribution of Average Backend Score</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-11" style="margin-bottom: 25px;">
+                        <div class="summary">
+                            <div id="figure-1" class="figure"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1" style="margin-bottom: 25px;">
+                        <div class="title-wrapper">
+                            <h4 class="text-center">Distribution of Average Frontend Score</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-11" style="margin-bottom: 25px;">
+                        <div class="summary">
+                            <div id="figure-2" class="figure"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -153,7 +202,94 @@
     <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
     <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
     <script src="//cdn.amcharts.com/lib/4/maps.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
     <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="//www.amcharts.com/lib/4/themes/patterns.js"></script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <!-- custom amchartJS -->
+    <script>
+
+    // Themes begin
+    am4core.useTheme(am4themes_dark);
+    am4core.useTheme(am4themes_animated);
+    // Themes end
+
+    // parse data with JSON
+    var avg_score_datascience = JSON.parse('{{avg_score_datascience|safe}}')
+    var avg_score_backend = JSON.parse('{{avg_score_backend|safe}}')
+    var avg_score_frontend = JSON.parse('{{avg_score_frontend|safe}}')
+
+    // generate histograms
+    makeHistogramChart(avg_score_datascience, 40, 0)
+    makeHistogramChart(avg_score_backend, 40, 1)
+    makeHistogramChart(avg_score_frontend, 40, 2)
+
+    // construct histogram data
+    function makeHistogramData(source, bins) {
+
+        // init
+        var data = [];
+        var min = Math.min.apply(null, source);
+        var max = Math.max.apply(null, source);
+        var range = max - min;
+        var step = range / bins;
+
+        // create items
+        for(var i = 0; i < bins; i++) {
+            var from = min + i * step;
+            var to = min + (i + 1) * step;
+                data.push({
+                from: from,
+                to: to,
+                count: 0
+            });
+        }
+
+        // Calculate range of the values
+        for(var i = 0; i < source.length; i++) {
+            var value = source[i];
+            var item = data.find(function(el) {
+                return (value >= el.from) && (value <= el.to);
+            });
+            item.count++;
+        }
+
+        return data;
+
+    }
+
+    // construct histogram chart
+    function makeHistogramChart(source, bins=30, n) {
+
+        // create n figures
+        var figure_n = am4core.create(("figure-"+n), am4charts.XYChart)
+
+        // setting width and height of figures
+        figure_n.width = am4core.percent(100);
+        figure_n.height = am4core.percent(100);
+
+        figure_n.data = makeHistogramData(source, bins);
+
+        // create axes
+        var categoryAxis = figure_n.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "from";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 30;
+
+        var valueAxis = figure_n.yAxes.push(new am4charts.ValueAxis());
+
+        // create series
+        var series = figure_n.series.push(new am4charts.ColumnSeries());
+        series.dataFields.valueY = "count";
+        series.dataFields.categoryX = "from";
+        series.columns.template.tooltipText = "{from} - {to}\n[bold]Count: {count}[/]";
+        series.columns.template.column.cornerRadiusTopLeft = 5;
+        series.columns.template.column.cornerRadiusTopRight = 5;
+        series.columns.template.stroke = am4core.color("#222222");
+        series.columns.template.fill = am4core.color("#0984e3");
+
+     }
+
+    </script>
 </html>

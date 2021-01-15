@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import pandas as pd
 import os
+import json
 
 # track variable change temporary
 from final import config as glob
@@ -12,12 +13,18 @@ def home(request):
         students = generateStudent()
         glob.COLUMNS_ = students["columns"]
         glob.RECORDS_ = students["records"]
+        glob.AVG_SCORE_DATASCIENCE_ = students["avg_score_datascience"]
+        glob.AVG_SCORE_BACKEND_ = students["avg_score_backend"]
+        glob.AVG_SCORE_FRONTEND_ = students["avg_score_frontend"]
     else:
         pass
     return render(request, 'index.html', {
-        'ranges': range(2),
+        'ranges': [*range(0,3)],
         'columns': glob.COLUMNS_,
-        'records': glob.RECORDS_
+        'records': glob.RECORDS_,
+        'avg_score_datascience': glob.AVG_SCORE_DATASCIENCE_,
+        'avg_score_backend': glob.AVG_SCORE_BACKEND_,
+        'avg_score_frontend': glob.AVG_SCORE_FRONTEND_
     })
 
 # make a recommendation page
@@ -50,14 +57,24 @@ def generateStudent():
     datasetpath = os.path.join(os.path.dirname(__file__), "dataset/train-tortuga.csv")
     # read df
     df = pd.read_csv(datasetpath)
+    # encode students' profile
     df["PROFILE_CODE"] = df['PROFILE'].apply(profileCoding)
+    # drop if a record has a null value
+    df.dropna(inplace=True)
     # chunk the dataset
     columns = df[['USER_ID', 'NAME', 'AVG_SCORE_DATASCIENCE', 'AVG_SCORE_BACKEND',	'AVG_SCORE_FRONTEND']].columns
-    chunk = df[['USER_ID', 'NAME', 'AVG_SCORE_DATASCIENCE', 'AVG_SCORE_BACKEND',	'AVG_SCORE_FRONTEND', 'PROFILE', 'PROFILE_CODE']].head(20).to_dict('records')
+    chunk = df[['USER_ID', 'NAME', 'AVG_SCORE_DATASCIENCE', 'AVG_SCORE_BACKEND', 'AVG_SCORE_FRONTEND', 'PROFILE', 'PROFILE_CODE']].head(50).to_dict('records')
+    # encode students' average score for every subject
+    datascience = json.dumps(df['AVG_SCORE_DATASCIENCE'].tolist())
+    backend = json.dumps(df['AVG_SCORE_BACKEND'].tolist())
+    frontend = json.dumps(df['AVG_SCORE_FRONTEND'].tolist())
     # define the payload
     payload = {
         "columns": columns,
-        "records": chunk
+        "records": chunk,
+        "avg_score_datascience": datascience,
+        "avg_score_backend": backend,
+        "avg_score_frontend": frontend
     }
     return payload
 
@@ -70,3 +87,9 @@ def profileCoding(profile):
     else:
         return 0
 
+# encoding students' average score for every subject -> for radial histogram
+def avgEncoding(dataframe, subject):
+    return pd.DataFrame(data=dataframe[subject].value_counts()).reset_index().rename(columns={
+                "index": "category",
+                subject: "value"
+            }).to_dict("records")
