@@ -84,6 +84,9 @@
             .summary-wrapper::-webkit-scrollbar {
                 display: none;
             }
+            .goto:hover {
+                cursor: pointer;
+            }
         </style>
     </head>
     <style>
@@ -153,6 +156,14 @@
                                         <td>{{row.AVG_SCORE_DATASCIENCE}}</td>
                                         <td>{{row.AVG_SCORE_BACKEND}}</td>
                                         <td>{{row.AVG_SCORE_FRONTEND}}</td>
+                                        <td>{{row.PROFILE}}</td>
+                                        <td>
+                                            <a  type="button"
+                                                href="{% url 'recommendation' %}?label={{row.PROFILE_CODE}}">
+                                                <i class="bi bi-arrow-right-square-fill goto"
+                                                style="font-size: 1.75em; position: relative; bottom: 3.7px;"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

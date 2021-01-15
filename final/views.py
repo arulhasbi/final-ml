@@ -62,7 +62,7 @@ def generateStudent():
     # drop if a record has a null value
     df.dropna(inplace=True)
     # chunk the dataset
-    columns = df[['USER_ID', 'NAME', 'AVG_SCORE_DATASCIENCE', 'AVG_SCORE_BACKEND',	'AVG_SCORE_FRONTEND']].columns
+    columns = df[['USER_ID', 'NAME', 'AVG_SCORE_DATASCIENCE', 'AVG_SCORE_BACKEND',	'AVG_SCORE_FRONTEND', 'PROFILE']].columns
     chunk = df[['USER_ID', 'NAME', 'AVG_SCORE_DATASCIENCE', 'AVG_SCORE_BACKEND', 'AVG_SCORE_FRONTEND', 'PROFILE', 'PROFILE_CODE']].head(50).to_dict('records')
     # encode students' average score for every subject
     datascience = json.dumps(df['AVG_SCORE_DATASCIENCE'].tolist())
