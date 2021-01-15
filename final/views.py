@@ -15,7 +15,7 @@ def home(request):
     else:
         pass
     return render(request, 'index.html', {
-        'ranges': range(4),
+        'ranges': range(2),
         'columns': glob.COLUMNS_,
         'records': glob.RECORDS_
     })
