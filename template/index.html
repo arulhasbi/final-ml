@@ -156,6 +156,7 @@
                                         <td>{{row.AVG_SCORE_DATASCIENCE}}</td>
                                         <td>{{row.AVG_SCORE_BACKEND}}</td>
                                         <td>{{row.AVG_SCORE_FRONTEND}}</td>
+                                        {% if row.PROFILE %}
                                         <td>{{row.PROFILE}}</td>
                                         <td>
                                             <a  type="button"
@@ -164,6 +165,7 @@
                                                 style="font-size: 1.75em; position: relative; bottom: 3.7px;"></i>
                                             </a>
                                         </td>
+                                        {% endif %}
                                     </tr>
                                 {% endfor %}
                                 </tbody>
