@@ -142,7 +142,7 @@
             .back:hover {
                 cursor: pointer;
             }
-            .minimize {
+            /* .minimize {
                 height: 285px;
                 overflow: hidden;
                 border-radius: 20px;
@@ -150,7 +150,7 @@
             }
             .minimize:hover {
                 height: 420px;
-            }
+            } */
         </style>
     </head>
     <style>
@@ -214,14 +214,17 @@
                                             <p>Course instructor</p>
                                             <p style="margin-top: 8px">
                                                 <span>{{course.lecturer}}</span>
-                                                <img src="https://www.flaticon.com/svg/vstatic/svg/4092/4092083.svg?token=exp=1611234994~hmac=c93d0de431c6968817ae7f9bc3063f77">
+                                                {% load static %}
+                                                <img src="{% static 'teacher.png' %}">
                                             </p>
                                         </div>
                                         <div class="col-md-6">
                                             <p class="text-right">Languages</p>
                                             <p class="text-right" style="margin-top: 8px">
-                                                <img src="https://www.flaticon.com/svg/vstatic/svg/197/197581.svg?token=exp=1611235036~hmac=8724970f609e53c921cbc1ea3b7d8351">
-                                                <img src="https://www.flaticon.com/svg/vstatic/svg/197/197374.svg?token=exp=1611235069~hmac=14eaf76c147833bfc82fbda3a6a7008f">
+                                                {% load static %}
+                                                <img src="{% static 'malaysia.png' %}">
+                                                {% load static %}
+                                                <img src="{% static 'united-kingdom.png' %}">
                                             </p>
                                         </div>
                                     </div>

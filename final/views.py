@@ -37,7 +37,8 @@ def home(request):
         'records': glob.RECORDS_,
         'avg_score_datascience': glob.AVG_SCORE_DATASCIENCE_,
         'avg_score_backend': glob.AVG_SCORE_BACKEND_,
-        'avg_score_frontend': glob.AVG_SCORE_FRONTEND_
+        'avg_score_frontend': glob.AVG_SCORE_FRONTEND_,
+        'is_generated': glob.GENERATED_
     })
 
 # make a recommendation page
@@ -54,13 +55,13 @@ def generateCourse(param):
         5: [{
                 "image": "https://images.unsplash.com/photo-1501526029524-a8ea952b15be?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80",
                 "title": "INTRO TO JAVASCRIPT",
-                "lecturer": "Prof. Dr. Shaliza K",
+                "lecturer": "Dr. Dene Lizette",
                 "hours": 5
             }],
         2: [{
                 "image": "https://images.unsplash.com/photo-1501526029524-a8ea952b15be?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80",
                 "title": "INTRO TO ANGULARJS",
-                "lecturer": "Prof. Dr. Shaliza K",
+                "lecturer": "Dr. Meridith Adena",
                 "hours": 5
             }],
         4: [{
@@ -72,19 +73,19 @@ def generateCourse(param):
         3: [{
                 "image": "https://images.unsplash.com/photo-1501526029524-a8ea952b15be?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80",
                 "title": "PHP BASIC",
-                "lecturer": "Dr. Syahid",
+                "lecturer": "Dr. Greta Leanna",
                 "hours": 5
             }],
         1: [{
                 "image": "https://images.unsplash.com/photo-1496942299866-9e7ab403e614?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
                 "title": "ARTIFICIAL INTELLIGENCE: AN INTRODUCTION",
-                "lecturer": "Dr. Nilam N",
+                "lecturer": "Dr. Randi Jessamyn",
                 "hours": 4
             }],
         0: [{
                 "image": "https://images.unsplash.com/photo-1501526029524-a8ea952b15be?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80",
-                "title": "DEPLOYMENT: INTRO TO DJANGO",
-                "lecturer": "Dr. Syahid",
+                "title": "ML DEPLOYMENT: INTRO TO DJANGO",
+                "lecturer": "Dr. Felicia Maya",
                 "hours": 5
             }]
     }

@@ -72,6 +72,33 @@
                 overflow: auto;
                 position: relative !Important;
             }
+            #backdrop {
+                top: 0;
+                left: 0;
+                position: absolute;
+                display: block;
+                width: 100%;
+                height: 100%;
+                z-index: 998;
+                backdrop-filter: blur(10px);
+                display: none;
+            }
+            #loadingBar {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                z-index: 999;
+                transform: translate(-50%, -65%);
+                display: none;
+                font-size: 1.5em;
+                font-family: 'Open Sans';
+            }
+
+            .loading-bar {
+                width: 140px;
+                display: block;
+                margin: 0 auto;
+            }
             .figure {
                 height: 100%;
                 width: 100%;
@@ -124,22 +151,32 @@
                 <h2 class="text-left display-2" style="position: relative">
                     <i class="bi bi-list"></i>
                     Students list
+                    {% if not is_generated %}
                     <a type="button"
                         class="btn btn-primary recommendation"
                         style="
                         position: absolute;
                         right: 0;
                         top: 0;"
+                        onclick='document.getElementById("loadingBar").style.display = "block";
+                                    document.getElementById("backdrop").style.display = "block";'
                         href="{% url 'home' %}?generate='True'">
                         Generate profiles
                     </a>
+                    {% endif %}
                 </h2>
             </div>
             <div class="container"
                  style="margin-bottom: 40px;">
                 <div class="row">
                      <div class="col-md-12">
+                        <div id="backdrop"></div>
                         <div class="list-wrapper">
+                            {% load static %}
+                            <p id="loadingBar" class="lead">
+                                <img class="loading-bar" src="{% static 'Interwind-1s-200px.gif' %}">
+                                generate students profile, please wait.
+                            </p>
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
