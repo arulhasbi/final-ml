@@ -1,3 +1,3 @@
 # Students profiling system
 
-The prototype mainly built for my machine learning project, built with Django.
+The prototype mainly buil for the machine learning project, built with Django.
